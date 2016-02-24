@@ -11,3 +11,5 @@ Bringing in bootstrap and getting our layout
 meteor add twbs:bootstrap
 ```
 
+# Phase 3
+Start using templates
