@@ -1,19 +1,19 @@
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
 
-  Template.buttonTpl.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
-  });
+  var tasklist = {
+    '1' : [{content : "You are procrastinating by not doing this", color : "DBFEC2"} ],
+    '2' : [{content : "You really need to do this this", color : "FFCBD5"},
+           {content : "You really need to do this also", color : "FFCBD5"}
+          ],
+    '3' : [{content : "You did this. I'm proud of you", color : "C3DCFE"}]
+  };
 
-  Template.buttonTpl.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+  Template.taskGroup.helpers({
+    'tasks' : function() {
+      console.log(Template.instance());
+      return tasklist[Template.instance().data.id]
     }
-  });
+  })
 }
 
 if (Meteor.isServer) {

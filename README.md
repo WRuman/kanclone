@@ -13,3 +13,6 @@ meteor add twbs:bootstrap
 
 # Phase 3
 Start using templates
+
+# Phase 4
+How about *more* templates??

@@ -7,37 +7,26 @@
   <h1>Kanclone</h1>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-4 task-col">
-        <div class="row"><h2>To-Do</h2></div>
-        <div class="row tasks">
-
-          {{> task color="C3DCFE" contents="Procrastinate by not doing this"}}
-
-        </div>
-      </div>
-      <div class="col-md-4 task-col">
-        <div class="row"><h2>In Progress</h2></div>
-        <div class="row tasks">
-
-
-            {{> task color="FFF8D7" contents="You really need to do this"}}
-            {{> task color="FFF8D7" contents="You really need to do this also"}}
-        </div>
-      </div>
-      <div class="col-md-4 task-col">
-        <div class="row"><h2>Done</h2></div>
-        <div class="row tasks">
-
-            {{> task color="DBFEC2" contents="You did this. I'm proud of you"}}
-
-        </div>
-      </div>
+      {{> taskGroup groupName="To-Do" id="1"}}
+      {{> taskGroup groupName="In Progress" id="2"}}
+      {{> taskGroup groupName="Done" id="3"}}
     </div>
   </div>
 </body>
 
+<template name="taskGroup">
+  <div class="col-md-4 task-col">
+    <div class="row"><h2>{{groupName}}</h2></div>
+    <div class="row tasks">
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    </div>
+  </div>
+</template>
+
 <template name="task">
   <div class="col-md-12 task" style="background-color:#{{color}};">
-    <p>{{contents}}</p>
+    <p>{{content}}</p>
   </div>
 </template>
