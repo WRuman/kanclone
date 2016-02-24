@@ -13,6 +13,24 @@ if (Meteor.isClient) {
     self.showAddForm = new ReactiveVar(false);
   });
 
+  Template.taskGroup.onRendered(function() {
+    var taskCol = this.find('.tasks');
+    var self = this;
+    console.log(taskCol);
+    taskCol.ondrop = function(ev) {
+      ev.preventDefault();
+      Meteor.call("moveTask", ev.dataTransfer.getData("text/plain"), self.data.groupName);
+    }
+    taskCol.ondragenter = function(ev) {
+      ev.preventDefault();
+      taskCol.style.margin = "1px solid blue";
+    }
+    taskCol.ondragover = function(ev) {
+      ev.preventDefault();
+      taskCol.style.margin = "1px solid blue";
+    }
+  })
+
   Template.taskGroup.events({
     'click [name="addBtn"]' : function(e, tpl) {
       tpl.showAddForm.set(true);
@@ -45,6 +63,16 @@ if (Meteor.isClient) {
       Meteor.call("removeTask", this._id);
     }
   });
+
+  Template.task.onRendered(function() {
+    var taskbox = this.find(".task");
+    var self = this;
+    taskbox.ondragstart = function(ev) {
+      console.log('drag started');
+      ev.dataTransfer.dropEffect = "move";
+      ev.dataTransfer.setData("text/plain", self.data._id);
+    }
+  })
 }
 
 if (Meteor.isServer) {
@@ -66,6 +94,17 @@ if (Meteor.isServer) {
       check(task_id, String);
       Tasks.remove({
         _id : task_id
+      });
+    },
+    "moveTask" : function(task_id, groupName) {
+      check(task_id, String);
+      check(groupName, String);
+      Tasks.update({
+        _id : task_id
+      }, {
+        $set : {
+          'groupName' : groupName
+        }
       });
     }
   });
