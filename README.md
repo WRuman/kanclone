@@ -16,3 +16,14 @@ Start using templates
 
 # Phase 4
 How about *more* templates??
+
+# Phase 5
+Databases and "reactivity"
+
+```bash
+meteor add reactive-var
+meteor add check
+```
+
+# Phase 6
+Drag and drop?
