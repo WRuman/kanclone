@@ -28,6 +28,7 @@ for each item in an array-like variable
 Databases and "reactivity"
 
 ```bash
+meteor remove insecure
 meteor add reactive-var
 meteor add check
 ```

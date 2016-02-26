@@ -43,10 +43,20 @@
       {{#each tasks}}
         {{> task}}
       {{/each}}
+
+      <!--
+       Think of the #unless construct as 'if not'. We only want to show the
+       '+ Add' button of we aren't showing the new task form
+     -->
       {{#unless showAddForm}}
         <button class="btn btn-block" name="addBtn">+ Add</button>
       {{/unless}}
+      <!-- showAddForm is defined in kanclone.js -->
       {{#if showAddForm}}
+        <!--
+          Standard bootstrap form named 'newTask' with a text input, a
+          color input, and two buttons
+        -->
         <form name="newTask">
           <div class="form-group">
             <label>Content</label>
@@ -57,6 +67,10 @@
             <input type="color" class="form-control" name="color">
           </div>
           <button type="submit" class="btn btn-default">Add</button>
+          <!--
+            Note the different button 'types', to prevent cancel from 
+            submitting the form
+          -->
           <button type="button" class="btn btn-danger" name="cancelBtn">Cancel</button>
         </form>
       {{/if}}
