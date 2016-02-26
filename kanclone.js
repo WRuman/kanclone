@@ -1,3 +1,9 @@
+/**
+ * kanclone.js
+ * Includes both server and client side logic for kanclone, a clone of various
+ * kanban board-esque web applications using the meteor framework
+*/
+
 if (Meteor.isClient) {
 
   Template.taskGroup.helpers({
