@@ -5,6 +5,21 @@ each phase introduces or discusses a new concept in Meteor.
 
 This project currently targets Meteor version 1.2, and each "phase" listed corresponds to a git branch.
 
+To run the project you will need Meteor installed. Instructions for Windows/Linux/OSX are available on
+[the official Meteor website](https://www.meteor.com/install). Once you've installed Meteor and have a copy of this
+repository, navigate to the project root in a console/terminal and simply type
+
+```bash
+meteor
+```
+
+You will see output as Meteor "links" source files and installs dependencies. The first time you run the project it may take a while to start up, but subsequent launches will be quicker. Once you see
+
+```bash
+=> App running at: http://localhost:[ANY_PORT]/
+```
+you will be able to visit the application in your browser. Happy coding!
+
 ## Phase 0
 Getting familiar with the project layout
 
