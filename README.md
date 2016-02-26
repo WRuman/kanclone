@@ -3,7 +3,7 @@ A clone of kanban board-esque web applications, designed to introduce the
 Meteor javascript framework. There are branches for each phase of the project and
 each phase introduces or discusses a new concept in Meteor.
 
-This project currently targets Meteor version 1.2.
+This project currently targets Meteor version 1.2, and each "phase" listed corresponds to a git branch.
 
 ## Phase 0
 Getting familiar with the project layout
