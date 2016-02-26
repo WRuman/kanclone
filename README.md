@@ -24,6 +24,3 @@ Databases and "reactivity"
 meteor add reactive-var
 meteor add check
 ```
-
-# Phase 6
-Drag and drop?
