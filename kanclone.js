@@ -11,11 +11,28 @@
  * nearly all the code will stay in this file for the sake of brevity
  */
  if (Meteor.isClient) {
+   // The client subscribes to the server publication called 'Tasks'.
+   // Since we removed autopublish, the database is not sent to the client
+   // by default. Instead, we define publications on the server side that clients
+   // can then subscribe to. Publications allow a ton of flexibility in what
+   // information is sent to the client, and they are a powerful tool for
+   // limiting data access. See the server side code near the end of the file
+   // to read about publications
+   Meteor.subscribe('Tasks');
+
   // We've updated our taskGroup helper to do a database query based on its
   // groupName
   Template.taskGroup.helpers({
     'tasks' : function() {
       var instanceVars = Template.instance().data;
+      // This find query looks within the data that we have subscribed to.
+      // If the server chooses not to publish some data to us, this query
+      // will run fine but it will not return unpublished results. To the client,
+      // the only data that exists is the data that is published.
+      // This find query can be changed to fit the needs of the view, since
+      // it searches within the already published data set that is cached
+      // on the client. Therefore, changing this query doesn't necessarily
+      // require a 'real' database request on the server side. 
       return Tasks.find({
         'groupName' : instanceVars.groupName
       });
@@ -185,5 +202,22 @@ if (Meteor.isServer) {
         }
       });
     }
+  });
+
+  // Publications allow you to control what parts of the database the client can
+  // see. The find query here can take any argument a regular mongo query would
+  // take. In this case it just returns all tasks in the task collection
+
+  // For example, if you wanted to only show users tasks their team had posted,
+  // you would publish tasks with the appropriate 'team_id'.
+
+  // Also, if the data set is large and you don't want it all to go to the
+  // client, publish functions can take arguments (like 'count') that you can
+  // use to apply limits or specificity to the publish query
+
+  // When using the meteor accounts package, you can get the id of the requesting
+  // user with Meteor.userId, in case you want to do authorization work
+  Meteor.publish('Tasks', function() {
+    return Tasks.find({});
   });
 }
