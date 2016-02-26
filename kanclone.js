@@ -1,5 +1,10 @@
-if (Meteor.isClient) {
+/**
+ * This code runs exclusively on the client. You could place client and server
+ * code in different files, in any arrangement of your choosing. In this case
+ * nearly all the code will stay in this file for the sake of brevity
+ */
 
+ if (Meteor.isClient) {
   Template.taskGroup.helpers({
     'tasks' : function() {
       return Tasks.find({
@@ -47,7 +52,13 @@ if (Meteor.isClient) {
   });
 }
 
+/**
+ * This code runs only on the server side. Again, this could be in another
+ * file entirely.
+ */
 if (Meteor.isServer) {
+  // Items in the startup function run only once on startup. We have nothing for
+  // the server to do at this point
   Meteor.startup(function () {
     if(Tasks.find().count() < 1) {
       Tasks.insert({content : "You are procrastinating by not doing this", color : "#DBFEC2", groupName : "To-Do"});

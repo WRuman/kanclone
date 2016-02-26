@@ -1,23 +1,45 @@
+<!--
+  Don't wrap everything in <html> tags, and leave out <head>. Meteor
+  will wrap this file for us and add our includes to the head section
+-->
 <head>
   <title>Kanclone</title>
+  <!-- make the bootstrap.css framework happy -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
+<!-- For information about all these new classes, like 'container-fluid' and
+  'col-md-4', check out the bootstrap css framework at http://getbootstrap.com/
+-->
 <body>
   <h1>Kanclone</h1>
   <div class="container-fluid">
+    <!-- Columns live in rows. Column widths should total up to 12 -->
     <div class="row">
-      {{> taskGroup groupName="To-Do" id="1"}}
-      {{> taskGroup groupName="In Progress" id="2"}}
-      {{> taskGroup groupName="Done" id="3"}}
+      <!--
+        Use task group templates, giving each one a name to show and to
+        look up tasks by
+      -->
+      {{> taskGroup groupName="To-Do"}}
+      {{> taskGroup groupName="In Progress"}}
+      {{> taskGroup groupName="Done"}}
     </div>
   </div>
 </body>
 
+<!--
+  The taskGroup template shows a group of tasks in a column, showing
+  the variable groupName as it's column header
+-->
 <template name="taskGroup">
   <div class="col-md-4 task-col">
     <div class="row"><h2>{{groupName}}</h2></div>
     <div class="row tasks">
+      <!--
+        Here we use the handlebars-style 'repeater' around our task template,
+        which will render a task template for each of the tasks in the 'tasks'
+        array from kanclone.js
+      -->
       {{#each tasks}}
         {{> task}}
       {{/each}}
@@ -42,6 +64,10 @@
   </div>
 </template>
 
+<!--
+  Our task template displays the task contents in a <p> tag, and sets its
+  background color to the value of the 'color' variable
+-->
 <template name="task">
   <div class="col-md-12 task" style="background-color:{{color}};">
     <p>{{content}}</p>
