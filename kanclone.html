@@ -1,12 +1,22 @@
+<!--
+  Don't wrap everything in <html> tags, and leave out <head>. Meteor
+  will wrap this file for us and add our includes to the head section
+-->
 <head>
   <title>Kanclone</title>
+  <!-- make the bootstrap.css framework happy -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
+<!-- For information about all these new classes, like 'container-fluid' and
+  'col-md-4', check out the bootstrap css framework at http://getbootstrap.com/
+-->
 <body>
   <h1>Kanclone</h1>
   <div class="container-fluid">
+    <!-- Columns live in rows. Column widths should total up to 12 -->
     <div class="row">
+      <!-- First column : To-Do -->
       <div class="col-md-4 task-col">
         <div class="row"><h2>To-Do</h2></div>
         <div class="row tasks">
@@ -18,15 +28,16 @@
 
         </div>
       </div>
+      <!-- Second column: In Progress -->
       <div class="col-md-4 task-col">
         <div class="row"><h2>In Progress</h2></div>
         <div class="row tasks">
-
 
             {{> task color="FFF8D7" contents="You really need to do this"}}
             {{> task color="FFF8D7" contents="You really need to do this also"}}
         </div>
       </div>
+      <!-- Third column: Done -->
       <div class="col-md-4 task-col">
         <div class="row"><h2>Done</h2></div>
         <div class="row tasks">
