@@ -1,13 +1,25 @@
+<!--
+  Don't wrap everything in <html> tags, and leave out <head>. Meteor
+  will wrap this file for us and add our includes to the head section
+-->
 <head>
-  <title>shapefly</title>
+  <title>kanclone</title>
 </head>
 
 <body>
   <h1>Welcome to Meteor!</h1>
-
+  <!--
+    The syntax we use to show a template somewhere in our page.
+    Lookup 'handlebars templating' for information on this style
+  -->
   {{> hello}}
 </body>
 
+<!--
+  Define a template named 'hello' that we can place anywhere in a page, any
+  number of times. It uses a variable called 'counter', which you can find in
+  kanclone.js
+-->
 <template name="hello">
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
