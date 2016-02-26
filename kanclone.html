@@ -10,7 +10,10 @@
       <div class="col-md-4 task-col">
         <div class="row"><h2>To-Do</h2></div>
         <div class="row tasks">
-
+          <!--
+            Add a task template placement. As you can see we can provide
+            named arguments
+          -->
           {{> task color="C3DCFE" contents="Procrastinate by not doing this"}}
 
         </div>
@@ -36,6 +39,10 @@
   </div>
 </body>
 
+<!--
+  Our task template displays the task contents in a <p> tag, and sets its
+  background color to the value of the 'color' variable
+-->
 <template name="task">
   <div class="col-md-12 task" style="background-color:#{{color}};">
     <p>{{contents}}</p>
