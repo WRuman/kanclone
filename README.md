@@ -32,3 +32,6 @@ meteor remove insecure
 meteor add reactive-var
 meteor add check
 ```
+
+# Phase 6
+Drag and drop functionality via HTML5 drag and drop protocol
