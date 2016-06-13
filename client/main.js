@@ -32,6 +32,15 @@ Template.taskGroup.helpers({
       return Tasks.find({
         'groupName' : instanceVars.groupName
       });
+    },
+    // Provide the value of our showAddForm variable to the template. Remember
+    // that, because we're using a reactive variable, any time showAddForm
+    // changes all the watchers will be notified, including the parts of the
+    // template that rely on this variable
+    'showAddForm' : function() {
+      // Because we attached showAddForm in the onCreated function for each
+      // taskGroup template, each instance has a copy
+      return Template.instance().showAddForm.get();
     }
 });
 
@@ -61,15 +70,15 @@ Template.taskGroup.onRendered(function() {
     var self = this;
     // Implement the 'droppable' interface for HTML5 drag and drop
     // https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
-taskCol.ondrop = function(ev) {
-    // Some browsers check the drop item for data and act accordingly, so
-    // we prevent any behavior we don't control after a drop
-    ev.preventDefault();
-    // When a drop event occurs, grab the task id from it's stored data and
-    // this template instance's group name and pass it to the server side
-    // moveTask function to reassign the task
-    Meteor.call("moveTask", ev.dataTransfer.getData("task_id"), self.data.groupName);
-    }
+    taskCol.ondrop = function(ev) {
+        // Some browsers check the drop item for data and act accordingly, so
+        // we prevent any behavior we don't control after a drop
+        ev.preventDefault();
+        // When a drop event occurs, grab the task id from it's stored data and
+        // this template instance's group name and pass it to the server side
+        // moveTask function to reassign the task
+        Meteor.call("moveTask", ev.dataTransfer.getData("task_id"), self.data.groupName);
+        }
     // We need to implement these functions to implement the interface, but we
     // currently don't use them for anything. preventDefault is a safe way to make
     // sure that these events won't do something unexpected
@@ -112,17 +121,6 @@ Template.taskGroup.events({
     }
 });
 
-// Provide the value of our showAddForm variable to the template. Remember
-// that, because we're using a reactive variable, any time showAddForm
-// changes all the watchers will be notified, including the parts of the
-// template that rely on this variable
-Template.taskGroup.helpers({
-    'showAddForm' : function() {
-      // Because we attached showAddForm in the onCreated function for each
-      // taskGroup template, each instance has a copy
-      return Template.instance().showAddForm.get();
-    }
-    });
 // Tasks have a single button for removing themselves
 Template.task.events({
     'click [name="deleteBtn"]' : function(e, tpl) {
