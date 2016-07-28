@@ -43,7 +43,7 @@
       <!--
         Here we use the handlebars-style 'repeater' around our task template,
         which will render a task template for each of the tasks in the 'tasks'
-        array from kanclone.js
+        array from main.js
       -->
       {{#each tasks}}
         {{> task}}
@@ -56,7 +56,7 @@
       {{#unless showAddForm}}
         <button class="btn btn-block" name="addBtn">+ Add</button>
       {{/unless}}
-      <!-- showAddForm is defined in kanclone.js -->
+      <!-- showAddForm is defined in main.js -->
       {{#if showAddForm}}
         <!--
           Standard bootstrap form named 'newTask' with a text input, a
